@@ -39,7 +39,7 @@ publishing {
 }
 
 
-tasks.configureEach { task ->
+tasks.whenTaskAdded { task ->
     if (!task.name.startsWith('publish')) {
         task.enabled = false
     }
