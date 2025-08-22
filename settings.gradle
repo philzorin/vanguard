@@ -1,0 +1,2 @@
+// Prevents JitPack from searching for subprojects
+rootProject.name = 'vanguard'

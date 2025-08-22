@@ -1,0 +1,46 @@
+plugins {
+    id 'base'
+    id 'maven-publish'
+}
+
+publishing {
+    publications {
+        jar(MavenPublication) {
+            groupId 'com.github.philzorin'
+            artifactId 'vanguard'
+            version '1.0.1'
+            artifact file("vanguard.aar")
+            
+            pom.withXml {
+                def deps = asNode().appendNode('dependencies')
+                
+                def LibDep = deps.appendNode('dependency')
+                LibDep.appendNode('groupId', 'com.github.philzorin')
+                LibDep.appendNode('artifactId', 'native')
+                LibDep.appendNode('version', '1.0.2')
+                LibDep.appendNode('scope', 'compile')
+
+                
+                def appCompatDep = deps.appendNode('dependency')
+                appCompatDep.appendNode('groupId', 'androidx.appcompat')
+                appCompatDep.appendNode('artifactId', 'appcompat')
+                appCompatDep.appendNode('version', '1.7.1')
+                appCompatDep.appendNode('scope', 'compile')
+
+                
+                def materialDep = deps.appendNode('dependency')
+                materialDep.appendNode('groupId', 'com.google.android.material')
+                materialDep.appendNode('artifactId', 'material')
+                materialDep.appendNode('version', '1.12.0')
+                materialDep.appendNode('scope', 'compile')
+            }
+        }
+    }
+}
+
+
+tasks.configureEach { task ->
+    if (!task.name.startsWith('publish')) {
+        task.enabled = false
+    }
+}
