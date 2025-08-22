@@ -8,7 +8,7 @@ publishing {
         jar(MavenPublication) {
             groupId 'com.github.philzorin'
             artifactId 'vanguard'
-            version '1.0.1'
+            version '1.0.4'
             artifact file("vanguard.aar")
             
             pom.withXml {
@@ -17,7 +17,7 @@ publishing {
                 def LibDep = deps.appendNode('dependency')
                 LibDep.appendNode('groupId', 'com.github.philzorin')
                 LibDep.appendNode('artifactId', 'native')
-                LibDep.appendNode('version', '1.0.2')
+                LibDep.appendNode('version', '1.0.3')
                 LibDep.appendNode('scope', 'compile')
 
                 
